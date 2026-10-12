@@ -279,6 +279,8 @@ class MainApplication(tk.Tk):
         if not re.match(r"^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$", name) or name.startswith("e.g."):
             messagebox.showerror("Validation Error", "Full name must contain letters only.")
             return
+        
+        # Validaciones estrictas de ingresos corregidas
         try:
             income = float(income_str)
         except ValueError:
@@ -388,7 +390,7 @@ class MainApplication(tk.Tk):
                 messagebox.showerror("Error", "Document number not found in the List.")
 
     def clear_fields(self):
-        """Resets the input fields."""
+        """Resets the input fields strictly without affecting existing records in memory."""
         self.txt_doc_num.delete(0, tk.END)
         self.txt_doc_num.insert(0, "e.g., 1012345678")
         self.txt_name.delete(0, tk.END)
@@ -444,8 +446,8 @@ class LoginWindow(tk.Tk):
         btn_enter.pack(side=tk.LEFT, padx=8)
 
         btn_exit = tk.Button(frame_btn, text="Exit", font=("Segoe UI", 9, "bold"), 
-                             bg="#F1948A", fg="#FFFFFF", activebackground="#E6B0AA", activeforeground="#FFFFFF",
-                             bd=0, padx=15, pady=5, command=self.destroy)
+                           bg="#F1948A", fg="#FFFFFF", activebackground="#E6B0AA", activeforeground="#FFFFFF",
+                           bd=0, padx=15, pady=5, command=self.destroy)
         btn_exit.pack(side=tk.LEFT, padx=8)
 
     def show_about_info(self):
@@ -454,7 +456,7 @@ class LoginWindow(tk.Tk):
             "Student: Angie Nathaly Gonzalez Carrillo\n"
             "UNAD ECBTI - Systems Engineering\n"
             "Course: Data Structures - 301305A\n"
-            "Group: 301305A_2204\n"
+            "Group: 2204\n"
             "Year: 2026"
         )
         messagebox.showinfo("About Developer", info)
